@@ -1,0 +1,128 @@
+{% extends 'base.html' %} {% block content %}
+<div class="hero-section bg-gradient-primary text-white py-5"style="background: linear-gradient(120deg, #b470e4ff 0%, #647dee 100%)">
+    <div class="container text-center">
+    <h1 class="display-3 fw-bold mb-4"style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2)">
+        Welcome to LearnBuddy
+    </h1>
+    <p class="lead fs-3 mb-4">
+        Your AI-powered companion for computer science learning
+    </p>
+    <div class="d-grid gap-3 d-md-flex justify-content-md-center mt-5">
+        <a href="{% url 'generate' %}" class="btn btn-light btn-lg px-5 py-3 me-md-3 rounded-pill shadow-sm hover-scale">
+            Chat with AI
+        </a>
+        <a href="{% url 'it_profiles' %}" class="btn btn-outline-light btn-lg px-5 py-3 rounded-pill hover-scale">
+            Explore Learning Paths
+        </a>
+    </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+        <div class="card h-100 shadow-sm hover-lift">
+        <img src="../static/images/logo02.jpg" class="card-img-top" alt="..." />
+        <div class="card-body text-center p-4">
+            {% comment %}
+            <div class="icon-circle mb-3">
+            <i class="fas fa-robot fa-2x text-primary"></i>
+            </div>
+            {% endcomment %}
+            <h3 class="card-title h4 mb-3">AI Learning Assistant</h3>
+            <p class="card-text text-muted">
+            Get personalized explanations and practice questions to enhance your
+            understanding of computer science concepts.
+        </p>
+        <a href="{% url 'it_profiles' %}" class="btn btn-primary rounded-pill px-4">
+            Start Learning
+        </a>
+        </div>
+    </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm hover-lift">
+        <img src="../static/images/logo02.jpg" class="card-img-top" alt="..." />
+        <div class="card-body text-center p-4">
+            {% comment %}
+            <div class="icon-circle mb-3">
+            <i class="fas fa-map-signs fa-2x text-primary"></i>
+            </div>
+            {% endcomment %}
+        <h3 class="card-title h4 mb-3">CS Learning Paths</h3>
+        <p class="card-text text-muted">
+            Follow structured learning paths designed to guide you through
+            computer science topics from beginner to advanced.
+        </p>
+        <a href="{% url 'it_profiles' %}" class="btn btn-primary rounded-pill px-4"> 
+            Explore Paths
+        </a>
+        </div>
+    </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm hover-lift">
+        <img src="../static/images/logo02.jpg" class="card-img-top" alt="..." />
+        <div class="card-body text-center p-4">
+            {% comment %}
+            <div class="icon-circle mb-3">
+            <i class="fas fa-trophy fa-2x text-primary"></i>
+            </div>
+            {% endcomment %}
+            <h3 class="card-title h4 mb-3">Hackathon Tracker</h3>
+            <p class="card-text text-muted">
+            Stay updated with the latest hackathons and coding competitions to
+            apply your skills in real-world challenges.
+            </p>
+            <a href="{% url 'hackathons' %}" class="btn btn-primary rounded-pill px-4">View Hackathons</a>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="container">
+        <div class="card-group">
+            <div class="card">
+            <img src="../static/images/logo02.jpg" class="card-img-top" alt="..." />
+        <div class="card-body">
+            <h5 class="card-title">Hackathone00</h5>
+            <p class="card-text">
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This content is a little bit longer.
+            </p>
+            <p class="card-text">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </p>
+        </div>
+</div>
+<div class="card">
+        <img src="../static/images/logo02.jpg" class="card-img-top" alt="..." />
+        <div class="card-body">
+            <h5 class="card-title">Hackathone01</h5>
+            <p class="card-text">
+            This card has supporting text below as a natural lead-in to
+            additional content.
+        </p>
+        <p class="card-text">
+            <small class="text-muted">Last updated 3 mins ago</small>
+        </p>
+        </div>
+    </div>
+    <div class="card">
+        <img src="../static/images/logo02.jpg" class="card-img-top" alt="..." />
+        <div class="card-body">
+            <h5 class="card-title">Hackathone02</h5>
+            <p class="card-text">
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This card has even longer content than the
+            first to show that equal height action.
+            </p>
+            <p class="card-text">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </p>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
