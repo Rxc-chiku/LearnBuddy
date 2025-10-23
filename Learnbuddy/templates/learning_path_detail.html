@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb-modern">
+                    <li class="breadcrumb-item"><a href="{% url 'learning_advisor' %}">Learning Paths</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ learning_path.title }}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <div class="card-modern">
+                <div class="card-header-modern">
+                    <h2 class="mb-0"><i class="bi bi-mortarboard me-2"></i>{{ learning_path.title }}</h2>
+                </div>
+                <div class="card-body p-4">
+                    <span class="badge-modern mb-3">{{ learning_path.get_difficulty_level_display }}</span>
+                    <p class="lead">{{ learning_path.description }}</p>
+                    <hr class="divider-modern my-4">
+                    <h4 class="section-subtitle mb-4"><i class="bi bi-list-check me-2"></i>Knowledge Areas</h4>
+                    
+                    {% if knowledge_areas %}
+                        <div class="list-group-modern">
+                            {% for area in knowledge_areas %}
+                                <div class="list-group-item-modern p-4">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-2">{{ area.title }}</h5>
+                                        <small class="text-muted">{{ area.estimated_hours }} hours</small>
+                                    </div>
+                                    <p class="mb-2">{{ area.description }}</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <small class="text-muted">Resources: {{ area.resources }}</small>
+                                        <a href="#" class="btn-modern btn-modern-outline-sm"><i class="bi bi-book me-1"></i>Study</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="alert-modern">
+                            <p class="mb-0">No knowledge areas have been defined for this learning path yet.</p>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="card-footer-modern p-3">
+                    <a href="{% url 'learning_advisor' %}" class="btn-modern btn-modern-outline"><i class="bi bi-arrow-left me-2"></i>Back to Learning Paths</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

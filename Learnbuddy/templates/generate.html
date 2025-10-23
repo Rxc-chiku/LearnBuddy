@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="modern-page-header">
+    <div class="container text-center">
+        <h1 class="page-header-title">Chat with AI Learning Assistant</h1>
+        <p class="page-header-subtitle">Ask CS questions and get clear, interactive explanations.</p>
+        <p>.........</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card-modern chat-wrap mx-auto" style="max-width:920px; margin-top:-60px;">
+        <div class="row g-0">
+            <div class="col-lg-4 d-none d-lg-block border-end p-4 sidebar-gradient">
+                <div class="d-flex align-items-start mb-3">
+                    <div class="avatar-modern me-3">
+                        <i class="bi bi-robot-fill fs-4"></i>
+                    </div>
+                    <div>
+                        <h5 class="mb-0">AI Learning Assistant</h5>
+                        <small class="text-muted">Smart, friendly, and ready to help</small>
+                    </div>
+                </div>
+
+                <p class="text-muted small">Tips:</p>
+                <ul class="list-unstyled text-muted small feature-list-modern">
+                    <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i>Ask specific questions for best answers</li>
+                    <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i>Include code snippets or error messages</li>
+                    <li><i class="bi bi-check2-circle text-primary me-2"></i>Request examples or step-by-step explanations</li>
+                </ul>
+
+                <div class="mt-4">
+                    <h6 class="mb-2 section-subtitle">Quick Prompts</h6>
+                    <button class="btn-modern btn-modern-outline mb-2 w-100 quick-prompt">Explain recursion</button>
+                    <button class="btn-modern btn-modern-outline mb-2 w-100 quick-prompt">Big-O basics</button>
+                    <button class="btn-modern btn-modern-outline w-100 quick-prompt">How to debug Python</button>
+                </div>
+            </div>
+
+            <div class="col-lg-8 p-4">
+                <form method="post" class="form-modern mb-4">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="id_message" class="form-label fw-medium"><i class="bi bi-question-circle me-2 text-primary"></i>Your Question</label>
+                        <textarea name="message" id="id_message" rows="3" class="form-control-modern" placeholder="Ask me anything about algorithms, data structures, debugging, or exam prep..." required>{{ form.message.value }}</textarea>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn-modern btn-modern-primary flex-grow-1">
+                            <i class="bi bi-send me-2"></i>Send Question
+                        </button>
+                        <button type="button" class="btn-modern btn-modern-outline copy-btn" title="Clear">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <div class="chat-panel modern-scrollbar" style="max-height:56vh; overflow:auto;">
+                    {% if result %}
+                    <div class="mb-4">
+                        <div class="d-flex align-items-start mb-2">
+                            <div class="me-3 user-bubble-avatar-modern">You</div>
+                            <div>
+                                <small class="text-muted">Your question</small>
+                                <div class="msg-modern user-msg-modern mt-1">{{ form.message.value|linebreaksbr }}</div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start">
+                            <div class="me-3 ai-bubble-avatar-modern"><i class="bi bi-robot-fill"></i></div>
+                            <div class="flex-grow-1">
+                                <small class="text-muted">AI response</small>
+                                <div class="msg-modern ai-msg-modern mt-1" id="ai-response">
+                                    <!-- Enhanced response rendering -->
+                                    {% if result %}
+                                        {{ result|linebreaks }}
+                                    {% endif %}
+                                </div>
+                                
+                                <!-- Copy button for response -->
+                                <div class="mt-2">
+                                    <button class="btn-modern btn-modern-outline-sm copy-response-btn" title="Copy response">
+                                        <i class="bi bi-clipboard me-1"></i>Copy
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="text-center text-muted py-5">
+                        <i class="bi bi-chat-left-text fs-1 mb-3 pulse-animation"></i>
+                        <p class="mb-0">Start a conversation — ask a question to see a helpful, step-by-step response.</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+/* Enhanced styling for AI responses */
+.ai-response-section {
+    background: #f8f9ff;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.questions-section {
+    background: #fff8f0;
+    border: 2px solid #ffd700;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.questions-section h3 {
+    color: #d97706;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.questions-section ol {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.questions-section li {
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.msg.ai-msg {
+    line-height: 1.6;
+}
+
+.code-block {
+    background: #1e1e1e;
+    color: #f8f8f2;
+    padding: 12px;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    margin: 10px 0;
+    overflow-x: auto;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle quick prompts
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.quick-prompt')) {
+            const prompt = e.target.textContent.trim();
+            document.getElementById('id_message').value = prompt;
+        }
+        
+        if (e.target.closest('.copy-btn')) {
+            document.getElementById('id_message').value = '';
+        }
+        
+        // Handle copy response button
+        if (e.target.closest('.copy-response-btn')) {
+            const responseText = document.getElementById('ai-response').textContent;
+            navigator.clipboard.writeText(responseText).then(function() {
+                // Show success feedback
+                const btn = e.target.closest('.copy-response-btn');
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="bi bi-check me-1"></i>Copied!';
+                btn.classList.add('btn-success');
+                btn.classList.remove('btn-outline-secondary');
+                
+                setTimeout(function() {
+                    btn.innerHTML = originalHTML;
+                    btn.classList.remove('btn-success');
+                    btn.classList.add('btn-outline-secondary');
+                }, 2000);
+            }).catch(function() {
+                alert('Failed to copy to clipboard');
+            });
+        }
+    });
+    
+    // Enhanced response formatting
+    function formatAIResponse() {
+        const responseDiv = document.getElementById('ai-response');
+        if (responseDiv && responseDiv.textContent) {
+            let content = responseDiv.innerHTML;
+            
+            // Format the questions section
+            if (content.includes('🤔 Test Your Understanding')) {
+                content = content.replace(
+                    /(---[\s\S]*## 🤔 Test Your Understanding[\s\S]*)/,
+                    '<div class="questions-section"><h3><i class="bi bi-question-circle me-2"></i>Test Your Understanding</h3>$1</div>'
+                );
+                
+                // Remove the markdown formatting from the questions section
+                content = content.replace(/---\s*<br>\s*<br>\s*## 🤔 Test Your Understanding\s*<br>\s*<br>/, '');
+            }
+            
+            // Basic code formatting (simple detection)
+            content = content.replace(/(```[\s\S]*?```)/g, '<div class="code-block">$1</div>');
+            content = content.replace(/```/g, '');
+            
+            responseDiv.innerHTML = content;
+        }
+    }
+    
+    // Format response on page load
+    formatAIResponse();
+});
+</script>
+{% endblock %}

@@ -1,0 +1,364 @@
+/* Modern Templates CSS for LearnBuddy */
+
+/* Global Styles */
+:root {
+  --primary-color: #4158D0;
+  --secondary-color: #C850C0;
+  --accent-color: #FFCC70;
+  --dark-color: #2c3e50;
+  --light-color: #f8f9ff;
+  --success-color: #2ecc71;
+  --warning-color: #f39c12;
+  --danger-color: #e74c3c;
+  --info-color: #3498db;
+  --primary-gradient: linear-gradient(135deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Modern Navbar */
+.navbar-modern {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 15px 0;
+  transition: var(--transition);
+}
+
+.navbar-brand-modern {
+  font-weight: 700;
+  font-size: 1.5rem;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+.nav-link-modern {
+  position: relative;
+  margin: 0 5px;
+  padding: 8px 15px !important;
+  border-radius: 50px;
+  transition: var(--transition);
+  color: var(--dark-color) !important;
+}
+
+.nav-link-modern:hover, .nav-link-modern.active {
+  background: var(--primary-gradient);
+  color: white !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Modern Cards */
+.card-modern {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  background: white;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+}
+
+.card-modern:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card-modern .card-header {
+  background: var(--primary-gradient);
+  color: white;
+  border: none;
+  padding: 20px;
+}
+
+.card-modern .card-body {
+  padding: 25px;
+}
+
+/* Glass Cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+  padding: 25px;
+  transition: var(--transition);
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(31, 38, 135, 0.25);
+}
+
+/* Modern Buttons */
+.btn-modern {
+  border-radius: 50px;
+  padding: 12px 30px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  border: none;
+}
+
+.btn-modern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-gradient);
+  z-index: -1;
+  transition: var(--transition);
+}
+
+.btn-modern:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn-modern-primary {
+  background: var(--primary-gradient);
+  color: white;
+}
+
+.btn-modern-secondary {
+  background: white;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.btn-modern-secondary:hover {
+  color: white;
+}
+
+.btn-modern-secondary::before {
+  opacity: 0;
+}
+
+.btn-modern-secondary:hover::before {
+  opacity: 1;
+}
+
+/* Modern Forms */
+.form-modern .form-control {
+  border-radius: 10px;
+  padding: 12px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  transition: var(--transition);
+}
+
+.form-modern .form-control:focus {
+  box-shadow: 0 0 0 3px rgba(65, 88, 208, 0.25);
+  border-color: var(--primary-color);
+}
+
+.form-modern .form-label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--dark-color);
+}
+
+/* Section Headers */
+.section-header-modern {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-header-modern h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.section-header-modern p {
+  font-size: 1.1rem;
+  color: var(--dark-color);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.section-divider {
+  height: 5px;
+  width: 80px;
+  background: var(--primary-gradient);
+  margin: 15px auto 25px;
+  border-radius: 5px;
+}
+
+/* Modern Footer */
+.footer-modern {
+  background: var(--dark-color);
+  color: white;
+  padding: 60px 0 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-modern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(65, 88, 208, 0.1) 0%, rgba(200, 80, 192, 0.1) 46%, rgba(255, 204, 112, 0.1) 100%);
+  z-index: 0;
+}
+
+.footer-modern .container {
+  position: relative;
+  z-index: 1;
+}
+
+.footer-modern h5 {
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.footer-modern .footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-modern .footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-modern .footer-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.footer-modern .footer-links a:hover {
+  color: white;
+  padding-left: 5px;
+}
+
+.footer-modern .social-icons {
+  margin-top: 20px;
+}
+
+.footer-modern .social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  margin-right: 10px;
+  transition: var(--transition);
+}
+
+.footer-modern .social-icons a:hover {
+  background: var(--primary-gradient);
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+  margin-top: 40px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Page Headers */
+.page-header-modern {
+  background: var(--primary-gradient);
+  padding: 80px 0;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header-modern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+
+.page-header-modern h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.page-header-modern .breadcrumb {
+  background: rgba(255, 255, 255, 0.2);
+  display: inline-flex;
+  padding: 10px 20px;
+  border-radius: 50px;
+}
+
+.page-header-modern .breadcrumb-item,
+.page-header-modern .breadcrumb-item a {
+  color: white;
+}
+
+.page-header-modern .breadcrumb-item.active {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.page-header-modern .breadcrumb-item + .breadcrumb-item::before {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar-modern {
+    padding: 10px 0;
+  }
+  
+  .page-header-modern {
+    padding: 50px 0;
+  }
+  
+  .page-header-modern h1 {
+    font-size: 2rem;
+  }
+  
+  .section-header-modern h2 {
+    font-size: 2rem;
+  }
+}

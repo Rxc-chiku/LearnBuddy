@@ -1,0 +1,365 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Modern Hero Section with 3D Elements -->
+<div class="hero-section position-relative overflow-hidden py-5" style="background: linear-gradient(135deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%); min-height: 100vh; display: flex; align-items: center;">
+    <!-- Animated 3D Background Elements -->
+    <div class="particles-3d position-absolute w-100 h-100" style="top: 0; left: 0;">
+        <div class="particle-3d" style="--x: 20%; --y: 15%; --size: 80px; --depth: 0.8; --color: rgba(255,255,255,0.2);"></div>
+        <div class="particle-3d" style="--x: 65%; --y: 25%; --size: 120px; --depth: 0.5; --color: rgba(255,255,255,0.15);"></div>
+        <div class="particle-3d" style="--x: 85%; --y: 70%; --size: 60px; --depth: 0.7; --color: rgba(255,255,255,0.2);"></div>
+        <div class="particle-3d" style="--x: 10%; --y: 60%; --size: 100px; --depth: 0.6; --color: rgba(255,255,255,0.15);"></div>
+        <div class="particle-3d" style="--x: 50%; --y: 85%; --size: 70px; --depth: 0.9; --color: rgba(255,255,255,0.2);"></div>
+        <div class="particle-3d" style="--x: 30%; --y: 40%; --size: 90px; --depth: 0.4; --color: rgba(255,255,255,0.15);"></div>
+    </div>
+
+    <!-- Animated Wave Background -->
+    <div class="wave-container position-absolute bottom-0 left-0 w-100">
+        <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="rgba(255, 255, 255, 0.1)" fill-opacity="1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,202.7C672,203,768,181,864,181.3C960,181,1056,203,1152,208C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+        <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="animation-delay: -2s;">
+            <path fill="rgba(255, 255, 255, 0.05)" fill-opacity="1" d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,138.7C672,128,768,160,864,176C960,192,1056,192,1152,176C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+    </div>
+
+    <div class="container text-center text-white position-relative" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <!-- Modern Header with 3D Effect -->
+                <div class="hero-header mb-5">
+                    <div class="d-flex align-items-center justify-content-center mb-4" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="icon-3d me-4">
+                            <i class="fas fa-brain fa-3x"></i>
+                        </div>
+                        <div class="text-start">
+                            <h1 class="display-2 fw-bold mb-2 text-3d" style="text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3); color: white !important;">
+                                Welcome to <span class="text-gradient-3d">LearnBuddy</span>
+                            </h1>
+                            <div class="subtitle-badge">
+                                <span class="badge glass-effect px-4 py-2 rounded-pill" style="backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.2);">
+                                    <i class="fas fa-star me-1"></i>Next-Gen AI Learning Platform
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modern Description with Typewriter Effect -->
+                <div class="hero-content mb-5">
+                    <p class="lead fs-3 mb-4 text-light typewriter" data-aos="fade-up" data-aos-delay="400" style="text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2); color: white !important;">
+                        🚀 Your AI-powered companion for mastering computer science
+                    </p>
+                    <div class="divider-glow mx-auto mb-4" data-aos="fade-up" data-aos-delay="500"></div>
+                    <p class="fs-5 mb-5 opacity-90 mx-auto glass-text" data-aos="fade-up" data-aos-delay="600" style="max-width: 650px; line-height: 1.7; text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2); color: white !important; padding: 15px; border-radius: 15px; backdrop-filter: blur(5px); background: rgba(255, 255, 255, 0.1);">
+                        🎯 Unlock your potential with personalized learning paths, AI-driven explanations, and real-world projects that transform you into a tech expert
+                    </p>
+                </div>
+
+                <!-- Modern Action Buttons with Hover Effects -->
+                <div class="hero-actions d-flex flex-column flex-md-row gap-4 justify-content-center mt-5" data-aos="fade-up" data-aos-delay="700">
+                    <a href="{% url 'generate' %}" class="btn-3d primary">
+                        <span class="btn-content"><i class="fas fa-robot me-2"></i>Start AI Learning Journey</span>
+                        <span class="btn-glow"></span>
+                    </a>
+                    <a href="{% url 'it_profiles' %}" class="btn-3d secondary">
+                        <span class="btn-content"><i class="fas fa-rocket me-2"></i>Explore Career Paths</span>
+                        <span class="btn-glow"></span>
+                    </a>
+                </div>
+
+                <!-- Modern Stats Counter with Animation -->
+                <div class="hero-stats mt-5 pt-4" data-aos="fade-up" data-aos-delay="800">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="stat-card-modern">
+                                <div class="stat-number counter-animated" data-target="10000">0</div>
+                                <div class="stat-label">Students Helped</div>
+                                <div class="stat-icon"><i class="fas fa-user-graduate"></i></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-card-modern">
+                                <div class="stat-number counter-animated" data-target="500">0</div>
+                                <div class="stat-label">AI Conversations</div>
+                                <div class="stat-icon"><i class="fas fa-comments"></i></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-card-modern">
+                                <div class="stat-number counter-animated" data-target="50">0</div>
+                                <div class="stat-label">Career Paths</div>
+                                <div class="stat-icon"><i class="fas fa-road"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator position-absolute" style="bottom: 30px; left: 50%; transform: translateX(-50%);" data-aos="fade-up" data-aos-delay="1000">
+        <div class="mouse-scroll">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <div class="scroll-text">Scroll to explore</div>
+        </div>
+    </div>
+</div>
+
+<!-- Modern Features Section -->
+<div class="features-section py-5" style="background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 50%, #f0f8ff 100%); position: relative;">
+    <!-- Section Background Pattern -->
+    <div class="position-absolute w-100 h-100 top-0 start-0" style="opacity: 0.03;">
+        <div class="pattern-grid"></div>
+    </div>
+    
+    <div class="container position-relative">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <div class="section-badge mb-3">
+                <span class="badge bg-primary bg-gradient px-4 py-2 rounded-pill fs-6">
+                    <i class="fas fa-star me-2"></i>Premium Features
+                </span>
+            </div>
+            <h2 class="display-4 fw-bold mb-4 position-relative">
+                <span class="text-gradient-animated">⚡ Supercharge Your Learning</span>
+                <div class="section-underline mx-auto"></div>
+            </h2>
+            <p class="lead text-muted fs-4 mx-auto" style="max-width: 600px; line-height: 1.6;">
+                Discover powerful AI-driven tools designed to accelerate your computer science education
+            </p>
+        </div>
+    
+        <div class="row g-4 mb-5">
+            <!-- AI Learning Assistant Card -->
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-modern h-100 hover-lift hover-glow text-center border-0 overflow-hidden" style="box-shadow: 0 8px 30px rgba(79, 172, 254, 0.15);">
+                    <div class="card-body p-5" style="background: var(--primary-gradient); color: white; position: relative;">
+                        <!-- Background Pattern -->
+                        <div class="position-absolute" style="top: -20px; right: -20px; opacity: 0.1; font-size: 8rem;">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        
+                        <div class="icon-circle mx-auto mb-4" style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 2px solid rgba(255, 255, 255, 0.3);">
+                            <i class="fas fa-robot fa-2x text-white"></i>
+                        </div>
+                        <h3 class="card-title h4 mb-3 fw-bold text-white">🤖 AI Learning Assistant</h3>
+                        <p class="card-text mb-4" style="opacity: 1; color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+                            Get instant explanations, practice questions, and personalized guidance from our advanced AI tutor.
+                        </p>
+                        <div class="mb-4">
+                            <div class="row g-2 text-center">
+                                <div class="col-4">
+                                    <div class="p-2 rounded" style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px);">
+                                        <div class="small fw-bold text-white">🔥 24/7</div>
+                                        <div class="small text-white" style="opacity: 0.8;">Available</div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="p-2 rounded" style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px);">
+                                        <div class="small fw-bold text-white">⚡ Fast</div>
+                                        <div class="small text-white" style="opacity: 0.8;">Responses</div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="p-2 rounded" style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px);">
+                                        <div class="small fw-bold text-white">🧠 Smart</div>
+                                        <div class="small text-white" style="opacity: 0.8;">AI</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{% url 'generate' %}" class="btn btn-light rounded-pill px-4 hover-scale fw-bold" style="color: #4facfe; box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);">
+                            <i class="fas fa-play me-2"></i>Start AI Chat
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-modern h-100 hover-lift hover-glow text-center border-0 overflow-hidden" style="box-shadow: 0 8px 30px rgba(240, 147, 251, 0.15);">
+                <div class="card-body p-5" style="background: var(--primary-gradient); color: white; position: relative;">
+                    <!-- Background Pattern -->
+                    <div class="position-absolute" style="top: -20px; right: -20px; opacity: 0.1; font-size: 8rem;">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    
+                    <div class="icon-circle mx-auto mb-4" style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 2px solid rgba(255, 255, 255, 0.3);">
+                        <i class="fas fa-briefcase fa-2x text-white"></i>
+                    </div>
+                    <h3 class="card-title h4 mb-3 fw-bold text-white">💼 IT Career Explorer</h3>
+                    <p class="card-text mb-4" style="opacity: 1; color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+                        Discover various tech careers, required skills, and get personalized advice for your dream job.
+                    </p>
+                    <div class="mb-4">
+                        <div class="row g-2 text-center">
+                            <div class="col-4">
+                                <div class="p-2 rounded" style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px);">
+                                    <div class="small fw-bold text-white">10+</div>
+                                    <div class="small text-white" style="opacity: 0.8;">Careers</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="p-2 rounded" style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px);">
+                                    <div class="small fw-bold text-white">🎆 Expert</div>
+                                    <div class="small text-white" style="opacity: 0.8;">Guidance</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="p-2 rounded" style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px);">
+                                    <div class="small fw-bold text-white">📊 Real</div>
+                                    <div class="small text-white" style="opacity: 0.8;">Insights</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{% url 'it_profiles' %}" class="btn btn-light rounded-pill px-4 hover-scale fw-bold" style="color: #f5576c; box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);">
+                        <i class="fas fa-search me-2"></i>Explore Careers
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="card card-modern h-100 hover-lift hover-glow text-center border-0 overflow-hidden" style="box-shadow: 0 8px 30px rgba(102, 126, 234, 0.15);">
+                <div class="card-body p-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; position: relative;">
+                    <!-- Background Pattern -->
+                    <div class="position-absolute" style="top: -20px; right: -20px; opacity: 0.1; font-size: 8rem;">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    
+                    <div class="icon-circle mx-auto mb-4" style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 2px solid rgba(255, 255, 255, 0.3);">
+                        <i class="fas fa-trophy fa-2x text-white"></i>
+                    </div>
+                    <h3 class="card-title h4 mb-3 fw-bold text-white">🏆 Hackathon Hub</h3>
+                    <p class="card-text mb-4" style="opacity: 1; color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+                        Stay updated with the latest hackathons and coding competitions to showcase your skills.
+                    </p>
+                    <div class="mb-4">
+                        <div class="row g-2 text-center">
+                            <div class="col-4">
+                                <div class="p-2 rounded" style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px);">
+                                    <div class="small fw-bold text-white">🔴 Live</div>
+                                    <div class="small text-white" style="opacity: 0.8;">Events</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="p-2 rounded" style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px);">
+                                    <div class="small fw-bold text-white">🌍 Global</div>
+                                    <div class="small text-white" style="opacity: 0.8;">Reach</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="p-2 rounded" style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px);">
+                                    <div class="small fw-bold text-white">💰 Win</div>
+                                    <div class="small text-white" style="opacity: 0.8;">Prizes</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{% url 'hackathons' %}" class="btn btn-light rounded-pill px-4 hover-scale fw-bold" style="color: #764ba2; box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);">
+                        <i class="fas fa-calendar me-2"></i>View Events
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Featured Hackathons Section -->
+<div class="py-5" style="background: linear-gradient(135deg, #f8f9ff 0%, #f0f8ff 100%);">
+<div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="display-5 fw-bold mb-3 featured-section-title" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🏆 Featured Hackathons</h2>
+        <p class="lead" style="color: #5a6c7d;">Join exciting coding competitions and showcase your skills</p>
+        <div class="divider mx-auto" style="width: 80px; height: 4px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 2px;"></div>
+    </div>
+    
+    {% if hackathons %}
+        <div class="row g-4 mb-5">
+            {% for hackathon in hackathons %}
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{% cycle '100' '200' '300' %}">
+                <div class="card h-100 featured-hackathon-card border-0 rounded-4 hover-glow overflow-hidden" style="box-shadow: 0 8px 30px rgba(102, 126, 234, 0.1); transition: all 0.3s ease;">
+                    <div class="card-header border-0 p-0 position-relative">
+                        {% if hackathon.image %}
+                            <img src="{% static hackathon.image %}" 
+                                    class="card-img-top rounded-top-4 hackathon-image" 
+                                    alt="{{ hackathon.title }}" 
+                                    style="height: 200px; object-fit: cover;" 
+                                    onerror="this.onerror=null; this.src='{% static 'images/logo02.jpg' %}'; this.style.padding='20px';">
+                        {% else %}
+                            <img src="{% static 'images/logo02.jpg' %}" 
+                                    class="card-img-top rounded-top-4 hackathon-image" 
+                                    alt="{{ hackathon.title }}" 
+                                    style="height: 200px; object-fit: cover; padding: 20px;">
+                        {% endif %}
+                        <div class="position-absolute top-0 end-0 m-3">
+                            <span class="badge bg-primary bg-gradient rounded-pill px-3 py-2">
+                                {{ hackathon.organizer }}
+                            </span>
+                        </div>
+                        <div class="hackathon-date position-absolute" style="bottom: 10px; left: 15px; background: rgba(255,255,255,0.95); border-radius: 10px; padding: 8px 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <span class="d-block fs-6 fw-bold text-primary">{{ hackathon.start_date|date:"d" }}</span>
+                            <span class="d-block small text-muted">{{ hackathon.start_date|date:"M" }}</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-4" style="background: linear-gradient(135deg, #fff 0%, #f8f9ff 50%, #fff 100%); position: relative;">
+                        <!-- Subtle pattern overlay -->
+                        <div class="position-absolute" style="top: 10px; right: 15px; opacity: 0.05; font-size: 3rem; color: #667eea;">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        
+                        <h5 class="card-title fw-bold mb-3" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">{{ hackathon.title }}</h5>
+                        <p class="card-text mb-3" style="color: #2d3748; line-height: 1.6;">
+                            {{ hackathon.description|truncatewords:15 }}
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="p-2 rounded" style="background: rgba(102, 126, 234, 0.1); color: #667eea;">
+                                <small class="fw-bold">
+                                    <i class="bi bi-calendar-event me-1"></i>
+                                    {{ hackathon.start_date|date:"M d" }} - {{ hackathon.end_date|date:"M d" }}
+                                </small>
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-between">
+                            <a href="{{ hackathon.registration_url }}" target="_blank" class="btn rounded-pill px-4 flex-fill me-md-2 fw-bold" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);">
+                                <i class="bi bi-box-arrow-up-right me-1"></i>Register
+                            </a>
+                            <a href="{% url 'hackathons' %}" class="btn btn-outline-primary rounded-pill px-4 fw-bold" style="border-color: #667eea; color: #667eea;">
+                                Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- View All Hackathons Button -->
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="{% url 'hackathons' %}" class="btn btn-primary btn-lg rounded-pill px-5 py-3 hover-scale">
+                <i class="bi bi-eye me-2"></i>View All Hackathons
+            </a>
+        </div>
+    {% else %}
+        <div class="text-center py-5" data-aos="fade-up">
+            <div class="mb-4">
+                <i class="bi bi-calendar-x" style="font-size: 4rem; color: #6c757d;"></i>
+            </div>
+            <h4 class="text-muted mb-3">No Hackathons Available</h4>
+            <p class="text-muted mb-4">There are currently no hackathons scheduled. Check back later for exciting opportunities!</p>
+            <a href="{% url 'hackathons' %}" class="btn btn-outline-primary rounded-pill px-4 hover-scale">
+                <i class="bi bi-refresh me-2"></i>Check Again
+            </a>
+        </div>
+    {% endif %}
+</div>
+</div>
+
+{% comment %} <style>
+
+</style> {% endcomment %}
+
+{% endblock %}

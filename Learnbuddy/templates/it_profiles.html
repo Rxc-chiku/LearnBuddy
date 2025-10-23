@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <header class="modern-page-header text-center mb-4">
+        <div class="container">
+            <div class="d-flex flex-column align-items-center">
+                <img src="{% static 'images/logo001.jpg' %}" alt="LearnBuddy" class="logo-modern mb-2" />
+                <h1 class="page-header-title">IT Career Profile Assistant</h1>
+                <p class="page-header-subtitle">Explore IT career paths and get concise, actionable guidance tailored to each role.</p>
+                <div class="divider-modern my-3" aria-hidden="true"></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="row g-4">
+        <!-- Form / Controls -->
+        <aside class="col-lg-4">
+            <div class="card-modern sticky-top" style="top:1.5rem;">
+                <div class="card-body">
+                    <h5 class="section-subtitle mb-3">Find a Career Path</h5>
+                    <form method="post" class="form-modern mb-0">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label">Choose profile</label>
+                            <select name="profile" class="form-select-modern">
+                                {% for value, text in form.fields.profile.choices %}
+                                    <option value="{{ value }}" {% if form.profile.value == value %}selected{% endif %}>{{ text }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Ask a specific question (optional)</label>
+                            <textarea name="question" class="form-control-modern" rows="4" placeholder="e.g. required skills, typical salary, learning path">{{ form.question.value|default:'' }}</textarea>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn-modern btn-modern-primary">
+                                <i class="bi bi-search me-2"></i>Get Information
+                            </button>
+                        </div>
+                    </form>
+
+                    <hr class="my-3">
+
+                    <h6 class="section-subtitle mb-2">Quick Tips</h6>
+                    <ul class="list-unstyled small text-muted feature-list-modern">
+                        <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i>Ask about skills, tools, and learning steps</li>
+                        <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i>Mention experience level for tailored advice</li>
+                        <li><i class="bi bi-check2-circle text-primary me-2"></i>Request a 30/60/90 day plan</li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Results / Examples -->
+        <section class="col-lg-8">
+            {% if result %}
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-header bg-gradient py-3" style="background:linear-gradient(90deg,#7f53ac,#647dee); color:#fff;">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="mb-0">Career Overview</h5>
+                                <small class="opacity-75">Profile: <strong class="text-white">{{ form.profile.value }}</strong></small>
+                            </div>
+                            <div class="text-end">
+                                <span class="badge bg-white text-primary">Personalized</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="career-info mb-3" id="it-profile-response">
+                            {{ result|linebreaks }}
+                        </div>
+                        
+                        <!-- Copy button for response -->
+                        <div class="mb-3">
+                            <button class="btn btn-outline-secondary btn-sm copy-response-btn" title="Copy response">
+                                <i class="bi bi-clipboard me-1"></i>Copy Response
+                            </button>
+                        </div>
+
+                        <div class="row g-3 mt-4">
+                            <div class="col-md-4">
+                                <div class="p-3 rounded-3" style="background:linear-gradient(180deg, rgba(127,83,172,0.06), rgba(100,125,238,0.03));">
+                                    <h6 class="mb-1">Top Skills</h6>
+                                    <p class="small text-muted mb-0">Languages, frameworks, tools to learn first</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-3 rounded-3" style="background:linear-gradient(180deg, rgba(127,83,172,0.04), rgba(100,125,238,0.02));">
+                                    <h6 class="mb-1">Typical Progression</h6>
+                                    <p class="small text-muted mb-0">Junior → Mid → Senior (what to focus on)</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-3 rounded-3" style="background:linear-gradient(180deg, rgba(127,83,172,0.04), rgba(100,125,238,0.02));">
+                                    <h6 class="mb-1">Estimated Time</h6>
+                                    <p class="small text-muted mb-0">Suggested months to reach mid-level</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% else %}
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-body text-center">
+                        <i class="bi bi-person-badge display-4 text-primary mb-3"></i>
+                        <h5 class="mb-2">No results yet</h5>
+                        <p class="text-muted mb-3">Select a profile and click "Get Information" to see a tailored career summary, learning path and resources.</p>
+                        <a href="# " class="btn btn-outline-primary btn-sm">View sample profiles</a>
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Example profiles / resources grid -->
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-start">
+                                <div class="me-3 display-6 text-primary"><i class="bi bi-code-slash"></i></div>
+                                <div>
+                                    <h6 class="mb-1">Software Engineer</h6>
+                                    <p class="small text-muted mb-2">Build scalable applications, strong algorithms & system design focus.</p>
+                                    <div class="small">
+                                        <span class="badge bg-light text-dark me-1">Python</span>
+                                        <span class="badge bg-light text-dark me-1">APIs</span>
+                                        <span class="badge bg-light text-dark">System Design</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-start">
+                                <div class="me-3 display-6 text-primary"><i class="bi bi-shield-lock"></i></div>
+                                <div>
+                                    <h6 class="mb-1">Security Analyst</h6>
+                                    <p class="small text-muted mb-2">Focus on threat detection, incident response and hardening systems.</p>
+                                    <div class="small">
+                                        <span class="badge bg-light text-dark me-1">Networking</span>
+                                        <span class="badge bg-light text-dark me-1">SIEM</span>
+                                        <span class="badge bg-light text-dark">Forensics</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- add more sample cards as desired -->
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+<style>
+/* Enhanced styling for IT profiles responses */
+.questions-section {
+    background: #fff8f0;
+    border: 2px solid #ffd700;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.questions-section h3 {
+    color: #d97706;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.questions-section ol {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.questions-section li {
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.career-info {
+    line-height: 1.6;
+}
+
+.code-block {
+    background: #1e1e1e;
+    color: #f8f8f2;
+    padding: 12px;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    margin: 10px 0;
+    overflow-x: auto;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle copy response button
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.copy-response-btn')) {
+            const responseText = document.getElementById('it-profile-response').textContent;
+            navigator.clipboard.writeText(responseText).then(function() {
+                // Show success feedback
+                const btn = e.target.closest('.copy-response-btn');
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="bi bi-check me-1"></i>Copied!';
+                btn.classList.add('btn-success');
+                btn.classList.remove('btn-outline-secondary');
+                
+                setTimeout(function() {
+                    btn.innerHTML = originalHTML;
+                    btn.classList.remove('btn-success');
+                    btn.classList.add('btn-outline-secondary');
+                }, 2000);
+            }).catch(function() {
+                alert('Failed to copy to clipboard');
+            });
+        }
+    });
+    
+    // Enhanced response formatting
+    function formatITProfileResponse() {
+        const responseDiv = document.getElementById('it-profile-response');
+        if (responseDiv && responseDiv.textContent) {
+            let content = responseDiv.innerHTML;
+            
+            // Format the questions section
+            if (content.includes('🤔 Test Your Understanding')) {
+                content = content.replace(
+                    /(---[\s\S]*## 🤔 Test Your Understanding[\s\S]*)/,
+                    '<div class="questions-section"><h3><i class="bi bi-question-circle me-2"></i>Test Your Understanding</h3>$1</div>'
+                );
+                
+                // Remove the markdown formatting from the questions section
+                content = content.replace(/---\s*<br>\s*<br>\s*## 🤔 Test Your Understanding\s*<br>\s*<br>/, '');
+            }
+            
+            // Basic code formatting (simple detection)
+            content = content.replace(/(```[\s\S]*?```)/g, '<div class="code-block">$1</div>');
+            content = content.replace(/```/g, '');
+            
+            responseDiv.innerHTML = content;
+        }
+    }
+    
+    // Format response on page load
+    formatITProfileResponse();
+});
+</script>
+
+{% endblock %}

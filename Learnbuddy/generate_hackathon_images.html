@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Images Generator</title>
+    <style>
+        .hackathon-card {
+            width: 500px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ai-theme {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .ai-theme::before {
+            content: "🤖";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 40px;
+            opacity: 0.7;
+        }
+        
+        .web-theme {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .web-theme::before {
+            content: "💻";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 40px;
+            opacity: 0.7;
+        }
+        
+        .cyber-theme {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .cyber-theme::before {
+            content: "🔒";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 40px;
+            opacity: 0.7;
+        }
+        
+        .mobile-theme {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        
+        .mobile-theme::before {
+            content: "📱";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 40px;
+            opacity: 0.7;
+        }
+        
+        .data-theme {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        
+        .data-theme::before {
+            content: "📊";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 40px;
+            opacity: 0.7;
+        }
+        
+        .blockchain-theme {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        
+        .blockchain-theme::before {
+            content: "⛓️";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 40px;
+            opacity: 0.7;
+        }
+        
+        .theme-text {
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+        
+        .dots {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.1) 2px, transparent 2px);
+            background-size: 30px 30px;
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hackathon Theme Images</h1>
+    <p>Right-click on each image and "Save as" to download them to your static/images folder</p>
+    
+    <div class="hackathon-card ai-theme" id="ai-card">
+        <div class="dots"></div>
+        <div class="theme-text">AI Innovation<br>Challenge</div>
+    </div>
+    
+    <div class="hackathon-card web-theme" id="web-card">
+        <div class="dots"></div>
+        <div class="theme-text">Web Development<br>Sprint</div>
+    </div>
+    
+    <div class="hackathon-card cyber-theme" id="cyber-card">
+        <div class="dots"></div>
+        <div class="theme-text">Cybersecurity<br>Hackathon</div>
+    </div>
+    
+    <div class="hackathon-card mobile-theme" id="mobile-card">
+        <div class="dots"></div>
+        <div class="theme-text">Mobile App<br>Innovation</div>
+    </div>
+    
+    <div class="hackathon-card data-theme" id="data-card">
+        <div class="dots"></div>
+        <div class="theme-text">Data Science<br>Challenge</div>
+    </div>
+    
+    <div class="hackathon-card blockchain-theme" id="blockchain-card">
+        <div class="dots"></div>
+        <div class="theme-text">Blockchain &<br>Crypto</div>
+    </div>
+
+    <script>
+        // This script can be used to convert the divs to canvas and download as images
+        function downloadImage(elementId, filename) {
+            const element = document.getElementById(elementId);
+            html2canvas(element).then(canvas => {
+                const link = document.createElement('a');
+                link.download = filename;
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+    </script>
+</body>
+</html>

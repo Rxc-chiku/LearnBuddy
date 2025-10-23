@@ -1,0 +1,434 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Modern Page Header -->
+<header class="page-header-modern position-relative overflow-hidden">
+    <div class="animated-gradient-bg" style="background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);"></div>
+    <!-- Animated background pattern -->
+    <div class="position-absolute w-100 h-100" style="top: 0; left: 0; opacity: 0.1;">
+        <div class="d-flex flex-wrap">
+            {% for i in "123456789012" %}
+                <div class="p-3 text-white" style="font-size: 2rem;">💻 🚀 🏆</div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="container text-center position-relative py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="badge bg-primary px-3 py-2 rounded-pill mb-3" data-aos="fade-down">
+                    <i class="fas fa-code me-2"></i>Code. Compete. Win.
+                </span>
+                <h1 class="display-3 fw-bold text-white mb-3 text-gradient" data-aos="fade-up">
+                    🚀 Hackathon Hub
+                </h1>
+                <p class="lead text-white mb-5" data-aos="fade-up" data-aos-delay="200">
+                    Discover amazing coding competitions, connect with developers, and turn your innovative ideas into reality!
+                </p>
+                
+                
+                <!-- Stats Section -->
+                <div class="row g-4 mt-4 mb-5">
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="stat-card-modern glass-effect">
+                            <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
+                            <h3 class="counter-animated">{{ hackathons|length }}</h3>
+                            <p class="mb-0">Active Events</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="stat-card-modern glass-effect">
+                            <div class="stat-icon"><i class="fas fa-users"></i></div>
+                            <h3 class="counter-animated">500+</h3>
+                            <p class="mb-0">Participants</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="stat-card-modern glass-effect">
+                            <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+                            <h3 class="counter-animated">$50K+</h3>
+                            <p class="mb-0">Prize Pool</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a href="#upcoming" class="btn-modern btn-modern-primary" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-calendar-event me-2"></i>Browse Events
+                    </a>
+                    <a href="https://chat.whatsapp.com/KD6bDBPd5kU4sE6KKjk0Fl?mode=wwt" class="btn-modern btn-modern-outline" data-aos="fade-up" data-aos-delay="400">
+                        <i class="fas fa-user-plus me-2"></i>Join Community
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modern Filter and Search Section -->
+<div class="container" id="upcoming">
+    <div class="row justify-content-center mb-5" style="margin-top: -2rem;">
+        <div class="col-lg-8">
+            <div class="card-modern p-4 shadow-lg" data-aos="fade-up">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="input-group-modern">
+                            <span class="input-group-icon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            <input type="text" class="form-control-modern" 
+                                    placeholder="Search hackathons..." id="searchHackathons">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <select class="form-select-modern" id="filterOrganizer">
+                            <option value="">All Organizers</option>
+                            {% for hackathon in hackathons %}
+                                <option value="{{ hackathon.organizer }}">{{ hackathon.organizer }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modern Hackathon Cards Section -->
+<div class="container position-relative">
+    <div class="section-header-modern text-center mb-5">
+        <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">
+            <i class="fas fa-trophy me-2"></i>Exciting Opportunities
+        </span>
+        <h2 class="display-5 fw-bold">🎯 Available Hackathons</h2>
+        <p class="lead text-muted">Choose your next coding adventure from {{ hackathons|length }} exciting events</p>
+        <div class="section-divider mx-auto my-3"></div>
+    </div>
+    
+    <div class="hackathon-grid mx-auto">
+        <div class="row g-4" id="hackathonCards">
+            {% if hackathons %}
+                {% for hackathon in hackathons %}
+                <div class="col-md-6 col-lg-4 hackathon-card" data-organizer="{{ hackathon.organizer }}" data-title="{{ hackathon.title|lower }}">
+                    <div class="card h-100 border-0 shadow-lg rounded-4 hover-lift position-relative" style="background: rgba(255, 255, 255, 1) !important;">
+                        <!-- Status Badge -->
+                        <div class="position-absolute" style="top: 15px; left: 15px; z-index: 10;">
+                            {% now "Y-m-d" as current_date %}
+                            {% if hackathon.start_date|date:"Y-m-d" > current_date %}
+                                <span class="badge bg-success rounded-pill px-3 py-2">
+                                    <i class="bi bi-calendar-check me-1"></i>Upcoming
+                                </span>
+                            {% elif hackathon.end_date|date:"Y-m-d" >= current_date %}
+                                <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
+                                    <i class="bi bi-broadcast me-1"></i>Live Now
+                                </span>
+                            {% else %}
+                                <span class="badge bg-secondary rounded-pill px-3 py-2">
+                                    <i class="bi bi-check-circle me-1"></i>Completed
+                                </span>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="card-header border-0 p-0 position-relative overflow-hidden">
+                            {% if hackathon.image %}
+                                {% if 'http' in hackathon.image %}
+                                    <!-- External URL -->
+                                    <img src="{{ hackathon.image }}" 
+                                            class="card-img-top rounded-top-4 hackathon-image" 
+                                            alt="{{ hackathon.title }}"
+                                            style="height: 220px; object-fit: cover;"
+                                            onerror="this.onerror=null; this.src='{% static 'images/logo02.jpg' %}';">  
+                                {% else %}
+                                    <!-- Local static file -->
+                                    <img src="{% static hackathon.image %}" 
+                                            class="card-img-top rounded-top-4 hackathon-image" 
+                                            alt="{{ hackathon.title }}"
+                                            style="height: 220px; object-fit: cover;"
+                                            onerror="this.onerror=null; this.src='{% static 'images/logo02.jpg' %}';">  
+                                {% endif %}
+                            {% else %}
+                                <img src="{% static 'images/logo02.jpg' %}" 
+                                        class="card-img-top rounded-top-4 hackathon-image" 
+                                        alt="{{ hackathon.title }}"
+                                        style="height: 220px; object-fit: cover;">
+                            {% endif %}
+                            
+                            <!-- Enhanced Date Badge -->
+                            <div class="position-absolute" style="bottom: 15px; right: 15px; background: rgba(0,0,0,0.8); border-radius: 12px; padding: 10px 15px;">
+                                <div class="text-center text-white">
+                                    <div class="fs-5 fw-bold">{{ hackathon.start_date|date:"d" }}</div>
+                                    <div class="small">{{ hackathon.start_date|date:"M Y" }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-body p-4" style="background: rgba(255, 255, 255, 1) !important;">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <span class="badge bg-primary bg-gradient rounded-pill px-3 py-2">
+                                    <i class="bi bi-building me-1"></i>{{ hackathon.organizer }}
+                                </span>
+                                <div class="text-muted small">
+                                    <i class="bi bi-hourglass-split me-1"></i>
+                                    {% widthratio hackathon.end_date|date:"j" hackathon.start_date|date:"j" 1 %} days
+                                </div>
+                            </div>
+                            
+                            <h5 class="card-title fw-bold mb-3" style="color: #2c3e50; line-height: 1.3;">
+                                {{ hackathon.title }}
+                            </h5>
+                            
+                            <p class="card-text text-muted mb-3" style="font-size: 0.95rem; line-height: 1.5;">
+                                {{ hackathon.description|truncatewords:25 }}
+                            </p>
+                            
+                            <!-- Enhanced Time Display -->
+                            <div class="row g-2 mb-4">
+                                <div class="col-6">
+                                    <div class="small text-muted">
+                                        <i class="bi bi-play-circle text-success me-1"></i>
+                                        <strong>Start:</strong><br>
+                                        {{ hackathon.start_date|date:"M d, Y" }}
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="small text-muted">
+                                        <i class="bi bi-stop-circle text-danger me-1"></i>
+                                        <strong>End:</strong><br>
+                                        {{ hackathon.end_date|date:"M d, Y" }}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Enhanced Action Buttons -->
+                            <div class="d-grid gap-2">
+                                <a href="{{ hackathon.registration_url }}" target="_blank" 
+                                    class="btn btn-primary rounded-pill px-4 py-2 d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-box-arrow-up-right me-2"></i>
+                                    Register Now
+                                </a>
+                                <button class="btn btn-outline-secondary rounded-pill px-4 py-2" 
+                                        onclick="shareHackathon('{{ hackathon.title }}', '{{ hackathon.registration_url }}')">
+                                    <i class="bi bi-share me-2"></i>Share Event
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12">
+                    <div class="text-center py-5">
+                        <div class="mb-4">
+                            <i class="bi bi-calendar-x" style="font-size: 4rem; color: #6c757d;"></i>
+                        </div>
+                        <h3 class="text-muted mb-3">No Hackathons Available</h3>
+                        <p class="text-muted mb-4">There are currently no hackathons in our database. Check back later for exciting opportunities!</p>
+                        <div class="d-flex gap-3 justify-content-center">
+                            <a href="{% url 'home' %}" class="btn btn-primary rounded-pill px-4">
+                                <i class="bi bi-house me-2"></i>Back to Home
+                            </a>
+                            <a href="{% url 'contact' %}" class="btn btn-outline-primary rounded-pill px-4">
+                                <i class="bi bi-envelope me-2"></i>Suggest Event
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            
+            <!-- No Results Found (Hidden by default) -->
+            <div class="col-12 d-none" id="noResults">
+                <div class="text-center py-5">
+                    <div class="mb-4">
+                        <i class="bi bi-search" style="font-size: 4rem; color: #6c757d;"></i>
+                    </div>
+                    <h3 class="text-muted mb-3">No Hackathons Found</h3>
+                    <p class="text-muted mb-4">Try adjusting your search terms or filters</p>
+                    <button class="btn btn-outline-primary rounded-pill px-4" onclick="clearFilters()">
+                        <i class="bi bi-arrow-clockwise me-2"></i>Clear Filters
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card border-0 rounded-4 p-5 text-center" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h3 class="fw-bold mb-3">🚀 Ready to Join the Next Big Thing?</h3>
+                        <p class="mb-0 fs-5">Connect with thousands of developers, showcase your skills, and win amazing prizes!</p>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="{% url 'contact' %}" class="btn btn-light btn-lg rounded-pill px-4 py-3">
+                            <i class="bi bi-chat-dots me-2"></i>Get Notified
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript for Enhanced Functionality -->
+<script>
+// Search functionality
+function searchHackathons() {
+    const searchTerm = document.getElementById('searchHackathons').value.toLowerCase();
+    const organizerFilter = document.getElementById('filterOrganizer').value;
+    const cards = document.querySelectorAll('.hackathon-card');
+    let visibleCount = 0;
+    
+    cards.forEach(card => {
+        const title = card.getAttribute('data-title');
+        const organizer = card.getAttribute('data-organizer');
+        
+        const matchesSearch = title.includes(searchTerm) || searchTerm === '';
+        const matchesOrganizer = organizer === organizerFilter || organizerFilter === '';
+        
+        if (matchesSearch && matchesOrganizer) {
+            card.style.display = 'block';
+            visibleCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+    
+    // Show/hide no results message
+    const noResults = document.getElementById('noResults');
+    if (visibleCount === 0) {
+        noResults.classList.remove('d-none');
+    } else {
+        noResults.classList.add('d-none');
+    }
+}
+
+// Clear all filters
+function clearFilters() {
+    document.getElementById('searchHackathons').value = '';
+    document.getElementById('filterOrganizer').value = '';
+    searchHackathons();
+}
+
+// Share hackathon function
+function shareHackathon(title, url) {
+    if (navigator.share) {
+        navigator.share({
+            title: title,
+            text: `Check out this hackathon: ${title}`,
+            url: url
+        }).catch(console.error);
+    } else {
+        // Fallback - copy to clipboard
+        const text = `Check out this hackathon: ${title} - ${url}`;
+        navigator.clipboard.writeText(text).then(() => {
+            alert('Link copied to clipboard!');
+        }).catch(() => {
+            alert('Unable to share. Please copy manually: ' + url);
+        });
+    }
+}
+
+// Event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchHackathons');
+    const organizerFilter = document.getElementById('filterOrganizer');
+    
+    searchInput.addEventListener('input', searchHackathons);
+    organizerFilter.addEventListener('change', searchHackathons);
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
+    // Add animation on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all hackathon cards
+    document.querySelectorAll('.hackathon-card').forEach(card => {
+        observer.observe(card);
+    });
+});
+</script>
+
+<!-- Additional CSS for animations -->
+<style>
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hackathon-card {
+    opacity: 0;
+}
+
+/* Enhanced hover effects */
+.hover-scale:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.hackathon-image:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+}
+
+/* Search input focus effects */
+.form-control:focus, .form-select:focus {
+    box-shadow: 0 0 0 0.25rem rgba(127, 83, 172, 0.25);
+    border-color: #7f53ac;
+}
+
+/* Status badge animations */
+.badge {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.badge.bg-warning {
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    25%, 75% { opacity: 0.7; }
+}
+</style>
+
+{% endblock %}
